@@ -20,7 +20,10 @@ function App() {
       direction: 'outgoing',
       sender: "user"
     };
+    const newMessages = [...messages, newMessage];
+    setMessages(newMessages);
 
+    setIsTyping(true);
     await processMessage(newMessage);
   };
 
@@ -42,7 +45,7 @@ function App() {
     }).then((data) => {
       console.log(data);   // TODO : you can see what data is coming from backend
       setMessages([...chatMessages, {
-        message: data?.message??'', // TODO: 
+        message: data?.message??'', 
         sender: "Bot"
       }]);
       setIsTyping(false);
